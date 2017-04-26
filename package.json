@@ -1,0 +1,24 @@
+{
+  "name": "md-front-web",
+  "description": "广东美登公司官网——前端部分",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/towavephone/MD-Front-Web.git"
+  },
+  "author": "towavephone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/towavephone/MD-Front-Web/issues"
+  },
+  "homepage": "https://github.com/towavephone/MD-Front-Web#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
