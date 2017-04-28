@@ -3,7 +3,8 @@ module.exports = {
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -19,7 +20,7 @@ module.exports = {
     "rules": {
         "linebreak-style": "error",
         "semi": ["error", "always"],
-        "no-undef": "off",
+        "no-undef": 2,
         "no-unused-vars": "off",
         "no-console": "off",
         "no-control-regex": "off",
@@ -34,7 +35,11 @@ module.exports = {
         "quotes": ["error", "single"],
         "key-spacing": "error",
         "keyword-spacing": "error",
-        "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 0, "maxBOF": 0}],
+        "no-multiple-empty-lines": ["error", {
+            "max": 1,
+            "maxEOF": 0,
+            "maxBOF": 0
+        }],
         "no-trailing-spaces": "error",
         "no-whitespace-before-property": "error",
         "object-curly-newline": "error",

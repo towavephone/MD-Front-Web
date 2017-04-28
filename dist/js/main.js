@@ -1,4 +1,4 @@
-;(function () {
+(function () {
 	
 	'use strict';
 
@@ -20,8 +20,6 @@
 		});
 
 	};
-
-
 	var offcanvasMenu = function() {
 
 		$('#page').prepend('<div id="fh5co-offcanvas" />');
