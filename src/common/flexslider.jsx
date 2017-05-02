@@ -1,7 +1,7 @@
 var React = require('react');
 var FlexSlider = React.createClass({
     render: function () {
-        if (!Array.isArray(this.props.images)) {
+        if (!Array.isArray(this.props.datas)) {
             return <div/>;
         }
         return (
@@ -9,7 +9,7 @@ var FlexSlider = React.createClass({
                 <div className="flexslider js-fullheight">
                     <ul className="slides">
                         {
-                            this.props.images.map(function (data, index) {
+                            this.props.datas.map(function (data, index) {
                                 return <li key={index} style={{backgroundImage: 'url(' + data + ')'}}></li>;
                             })
                         }

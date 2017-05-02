@@ -1,6 +1,9 @@
 var React = require('react');
 var xhr = require('../toolers/xhr');
 var Header = React.createClass({
+    click: function () {
+        this.props.jump('skus', null);
+    },
     render: function () {
         return (
             <nav className="fh5co-nav" role="navigation">
@@ -10,7 +13,7 @@ var Header = React.createClass({
                             <img src="dist/images/美登图标.png" className="img-responsive" style={{width: '55px'}}/>
                         </div>
                         <div className="col-md-3 col-xs-5">
-                            <div id="fh5co-logo"><a href="index.html">广东美登纸业有限公司</a></div>
+                            <div id="fh5co-logo"><a href="index.html#app/index">广东美登纸业有限公司</a></div>
                         </div>
                         <div className="col-md-5 col-xs-3 text-center menu-1">
                             <ul>

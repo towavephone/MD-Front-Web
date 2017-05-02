@@ -8,7 +8,7 @@ app.get('/index.html', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 app.get('', function (req, res) {
-    res.redirect('./index.html');
+    res.redirect('./index.html#app/index');
 });
 
 var server = app.listen(80, function () {
