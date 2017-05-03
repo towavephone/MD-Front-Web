@@ -10,7 +10,7 @@ var OwlCarousel = React.createClass({
                         <div className="row animate-box">
                             <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
                                 <span>见证</span>
-                                <h2>快乐的团队</h2>
+                                <h2>快乐的客户</h2>
                             </div>
                         </div>
                         <div className="row">

@@ -18,8 +18,8 @@ var Index = React.createClass({
                             <div className="col-md-8 col-md-offset-2 text-center">
                                 <div className="display-t">
                                     <div className="display-tc animate-box" data-animate-effect="fadeIn">
-                                        <h1>Contact Us</h1>
-                                        <h2>Free html5 templates Made by <a href="http://freehtml5.co" target="_blank">freehtml5.co</a></h2>
+                                        <h1>联系我们</h1>
+                                        <h2>请留下你们的宝贵意见或建议</h2>
                                     </div>
                                 </div>
                             </div>
@@ -31,51 +31,47 @@ var Index = React.createClass({
                         <div className="row">
                             <div className="col-md-5 col-md-push-1 animate-box">
                                 <div className="fh5co-contact-info">
-                                    <h3>Contact Information</h3>
+                                    <h3>关于我们</h3>
                                     <ul>
-                                        <li className="address">198 West 21th Street, <br/> Suite 721 New York NY 10016</li>
-                                        <li className="phone"><a href="tel://1234567920">+ 1235 2355 98</a></li>
-                                        <li className="email"><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-                                        <li className="url"><a href="http://gettemplates.co">gettemplates.co</a></li>
+                                        <li className="address">广东省佛山市三水区乐平镇<br/>三水工业园区C区9号</li>
+                                        <li className="phone"><a href="tel://18038762080">+ 18038762080</a></li>
+                                        <li className="email"><a href="mailto:info@yoursite.com">634407147@qq.com</a></li>
+                                        <li className="url"><a href="http://www.fsmeideng.com">fsmeideng.com</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="col-md-6 animate-box">
-                                <h3>Get In Touch</h3>
+                                <h3>留言</h3>
                                 <form action="#">
                                     <div className="row form-group">
-                                        <div className="col-md-6">
-                                            <label htmlFor="fname">First Name</label>
-                                            <input type="text" id="fname" className="form-control" placeholder="Your firstname"/>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label htmlFor="lname">Last Name</label>
-                                            <input type="text" id="lname" className="form-control" placeholder="Your lastname"/>
+                                        <div className="col-md-12">
+                                            <label htmlFor="name">姓名</label>
+                                            <input type="text" id="name" className="form-control" placeholder="请输入你的姓名"/>
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <label htmlFor="email">Email</label>
-                                            <input type="text" id="email" className="form-control" placeholder="Your email address"/>
+                                            <label htmlFor="email">邮箱</label>
+                                            <input type="text" id="email" className="form-control" placeholder="请输入你的邮箱"/>
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <label htmlFor="subject">Subject</label>
-                                            <input type="text" id="subject" className="form-control" placeholder="Your subject of this message"/>
+                                            <label htmlFor="subject">主题</label>
+                                            <input type="text" id="subject" className="form-control" placeholder="请输入留言的主题"/>
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <label htmlFor="message">Message</label>
-                                            <textarea name="message" id="message" cols="30" rows="10" className="form-control" placeholder="Say something about us"></textarea>
+                                            <label htmlFor="message">留言</label>
+                                            <textarea name="message" id="message" cols="30" rows="10" className="form-control" placeholder="对我们说些悄悄话吧"></textarea>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="submit" value="Send Message" className="btn btn-primary"/>
+                                        <button className="btn btn-primary col-md-4">发送</button>
                                     </div>
                                 </form>
                             </div>

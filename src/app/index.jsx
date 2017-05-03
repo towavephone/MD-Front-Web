@@ -14,19 +14,19 @@ var Index = React.createClass({
             ],
             products: [
                 {
-                    img: 'dist/images/product-1.jpg',
-                    name: '无尘纸',
-                    spec: '400*100'
+                    img: 'dist/images/MD-B1.jpg',
+                    name: '扩散速渗型（卫生巾芯体）',
+                    spec: 'MD-B1'
                 },
                 {
-                    img: 'dist/images/product-2.jpg',
-                    name: '无纺布',
-                    spec: '40*20'
+                    img: 'dist/images/MD-B2.jpg',
+                    name: '速渗型（尿片芯体）',
+                    spec: 'MD-B2'
                 },
                 {
-                    img: 'dist/images/product-3.jpg',
-                    name: '高分子',
-                    spec: '400*40'
+                    img: 'dist/images/MD-B3.jpg',
+                    name: '扩散干爽型（尿库芯体）',
+                    spec: 'MD-B3'
                 }
             ],
             persons: [

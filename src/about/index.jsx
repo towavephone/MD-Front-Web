@@ -60,7 +60,7 @@ var Index = React.createClass({
                             <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
                                 <span>员工写照</span>
                                 <h2>遇见我们团队</h2>
-                                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                                <p>不怕做不到，就怕想不到，做到做不到，试试才知道</p>
                             </div>
                         </div>
                         <Staffs datas={this.props.persons}/>
