@@ -1,6 +1,57 @@
 var React = require('react');
 var xhr = require('../toolers/xhr');
+var HeadNav = require('../common/head-nav.jsx');
 var Header = React.createClass({
+    getDefaultProps: function () {
+        return {
+            tabs_url: [
+                {
+                    url: '#about/index',
+                    name: '公司介绍',
+                    dropdown: [
+                        {
+                            url: '#about/index',
+                            name: '公司介绍'
+                        }
+                    ]
+                },
+                {
+                    url: '#product/index',
+                    name: '产品展示'
+                },
+                {
+                    url: '#service/index',
+                    name: '服务中心'
+                },
+                {
+                    url: '#contact/index',
+                    name: '联系我们',
+                    dropdown: [
+                        {
+                            url: '#about/index',
+                            name: '公司介绍'
+                        },
+                        {
+                            url: '#about/index',
+                            name: '公司介绍'
+                        },
+                        {
+                            url: '#about/index',
+                            name: '公司介绍'
+                        },
+                        {
+                            url: '#about/index',
+                            name: '公司介绍'
+                        },
+                        {
+                            url: '#about/index',
+                            name: '公司介绍'
+                        }
+                    ]
+                }
+            ]
+        };
+    },
     click: function () {
         this.props.jump('skus', null);
     },
@@ -16,25 +67,7 @@ var Header = React.createClass({
                             <div id="fh5co-logo"><a href="index.html#app/index">广东美登纸业有限公司</a></div>
                         </div>
                         <div className="col-md-5 col-xs-3 text-center menu-1">
-                            <ul>
-                                <li><a href="#about/index">公司介绍</a></li>
-                                <li className="has-dropdown">
-                                    <a href="#product/index">产品展示</a>
-                                    <ul className="dropdown">
-                                        <li><a href="#">Single hop</a></li>
-                                    </ul>
-                                </li>
-                                <li className="has-dropdown">
-                                    <a href="#service/index">服务中心</a>
-                                    <ul className="dropdown">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="#">eCommerce</a></li>
-                                        <li><a href="#">Branding</a></li>
-                                        <li><a href="#">API</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#contact/index">联系我们</a></li>
-                            </ul>
+                            <HeadNav tabs_url={this.props.tabs_url} active_tab_url={location.hash}/>
                         </div>
                         <div className="col-md-3 col-xs-2 text-right hidden-xs menu-2">
                             <ul className="col-md-9">

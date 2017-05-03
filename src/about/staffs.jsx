@@ -8,7 +8,7 @@ var Staffs = React.createClass({
             <div className="row">
                 {
                     this.props.datas.map(function (data, index) {
-                        return <div className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
+                        return <div key={index} className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
                             <div className="fh5co-staff">
                                 <img src={data.img} alt="Free HTML5 Templates by gettemplates.co"/>
                                 <h3>{data.name}</h3>

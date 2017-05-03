@@ -1,4 +1,5 @@
 .eslintcache
-node_modules
+node_modules/
 npm-debug*
 /build
+index.html

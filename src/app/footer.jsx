@@ -6,7 +6,7 @@ var Footer = React.createClass({
                 <div className="container">
                     <div className="row row-pb-md">
                         <div className="col-md-4 fh5co-widget">
-                            <h3>美登</h3>
+                            <h3>美登纸业</h3>
                             <p>脚踏实地实实在在  筑建文化革新创造</p>
                             <p>伫立行业领先地位  开创引领全新格局</p>
                             <p>携手先登共享共赢  强势打造高端品牌</p>

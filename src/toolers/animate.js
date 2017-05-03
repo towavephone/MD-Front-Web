@@ -239,7 +239,6 @@ var testimonialCarousel = function () {
 };
 
 var allRun = function () {
-    debugger
     mobileMenuOutsideClick();
     offcanvasMenu();
     burgerMenu();
