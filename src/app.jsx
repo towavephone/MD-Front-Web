@@ -15,6 +15,8 @@ var App = React.createClass({
     },
     componentDidMount: function () {
         this.initContent();
+        // 一次性的绑定，不能多次绑定，否则会出现抖动问题
+        animate.setEvent();
         window.addEventListener('hashchange', function (e) {
             if (this.state.url != location.hash.substr(1).split('?')[0]) {
                 this.initContent();
