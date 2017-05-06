@@ -19,6 +19,7 @@ var App = React.createClass({
         animate.setEvent();
         window.addEventListener('hashchange', function (e) {
             if (this.state.url != location.hash.substr(1).split('?')[0]) {
+                animate.showLoader();
                 this.initContent();
             }
         }.bind(this));

@@ -136,9 +136,13 @@ var goToTop = function () {
     });
 };
 
-	// Loading page
-var loaderPage = function () {
+// Loading page
+var fadeLoader = function () {
     $('.fh5co-loader').fadeOut('slow');
+};
+
+var showLoader = function () {
+    $('.fh5co-loader').show();
 };
 
 var counter = function () {
@@ -200,7 +204,7 @@ var testimonialCarousel = function () {
 var allRun = function () {
     contentWayPoint();
     tabs();
-    loaderPage();
+    fadeLoader();
     sliderMain();
     setTimeout(function () {
         testimonialCarousel();
@@ -215,17 +219,7 @@ var setEvent = function () {
     goToTop();
 };
 module.exports = {
-    mobileMenuOutsideClick: mobileMenuOutsideClick,
-    offcanvasMenu: offcanvasMenu,
-    burgerMenu: burgerMenu,
-    contentWayPoint: contentWayPoint,
-    dropdown: dropdown,
-    tabs: tabs,
-    goToTop: goToTop,
-    loaderPage: loaderPage,
-    counterWayPoint: counterWayPoint,
-    sliderMain: sliderMain,
-    testimonialCarousel: testimonialCarousel,
+    showLoader: showLoader,
     allRun: allRun,
     setEvent: setEvent
 };
