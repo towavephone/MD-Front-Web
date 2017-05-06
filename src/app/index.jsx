@@ -1,7 +1,7 @@
 var React = require('react');
 var FlexSlider = require('../common/flexslider.jsx');
 var Product = require('../common/product.jsx');
-var OwlCarousel = require('./owl-carousel.jsx');
+var Persons = require('./persons.jsx');
 var Counter = require('./counter.jsx');
 var Index = React.createClass({
     getDefaultProps: function () {
@@ -78,7 +78,7 @@ var Index = React.createClass({
             <div>
                 <FlexSlider datas={this.props.images}/>
                 <Product datas={this.props.products}/>
-                <OwlCarousel datas={this.props.persons}/>
+                <Persons datas={this.props.persons}/>
                 <Counter datas={this.props.counters}/>
             </div>
         );

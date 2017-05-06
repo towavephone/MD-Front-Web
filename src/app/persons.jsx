@@ -1,5 +1,5 @@
 var React = require('react');
-var OwlCarousel = React.createClass({
+var Persons = React.createClass({
     render: function () {
         if (!Array.isArray(this.props.datas)) {
             return <div/>;
@@ -41,4 +41,4 @@ var OwlCarousel = React.createClass({
         );
     }
 });
-module.exports = OwlCarousel;
+module.exports = Persons;
