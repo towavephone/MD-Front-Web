@@ -118,4 +118,4 @@ var App = React.createClass({
         </div>;
     }
 });
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('page'));
