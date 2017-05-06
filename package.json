@@ -6,9 +6,10 @@
   "scripts": {
     "webpack_dev":"./node_modules/.bin/webpack -w",
     "webpack_prod": "./node_modules/.bin/webpack -w --config webpack.prod.config.js",
-    "serve": "./node_modules/.bin/node server.js",
-    "dev": "npm run serve | npm run webpack_dev",
-    "prod": "npm run serve | npm run webpack_prod",
+    "serve_dev": "./node_modules/.bin/node server.js",
+    "serve_prod": "./node_modules/.bin/node server.prod.js",
+    "dev": "npm run serve_dev | npm run webpack_dev",
+    "prod": "npm run serve_prod | npm run webpack_prod",
     "eslint": "eslint --ext .js,.jsx src/** --fix"
   },
   "repository": {
