@@ -210,6 +210,13 @@ var allRun = function () {
         testimonialCarousel();
     }, 200);
     counterWayPoint();
+    // 每次url改变关闭侧边栏
+    if ($('body').hasClass('offcanvas')) {
+        $('body').removeClass('offcanvas');
+        $('.js-fh5co-nav-toggle').removeClass('active');
+    }
+    // 每次url改变或刷新时到页面最顶部
+    // $('html, body').animate({scrollTop: $('html').offset().top}, 500, 'easeInOutExpo');
 };
 var setEvent = function () {
     mobileMenuOutsideClick();
