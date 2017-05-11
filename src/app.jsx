@@ -18,10 +18,8 @@ var App = React.createClass({
         // 一次性的绑定，不能多次绑定，否则会出现抖动问题
         animate.setEvent();
         window.addEventListener('hashchange', function (e) {
-            if (this.state.url != location.hash.substr(1).split('?')[0]) {
-                animate.showLoader();
-                this.initContent();
-            }
+            animate.showLoader();
+            this.initContent();
         }.bind(this));
         window.onerror = function (msg) {
             helpers.alert(msg.replace('Uncaught ', ''));
@@ -79,20 +77,19 @@ var App = React.createClass({
             var page = pages[i];
             var length = page.length;
             if (url.slice(0, length) === page) {
+                flag = false;
                 require.ensure([], function (require) {
-                    flag = false;
                     var content = require('./' + page + url.slice(length));
-                    this.setState({content: content, data: data, url: url}, function () {
-                        animate.allRun();
-                    });
+                    this.setState({content: content, data: data, url: url});
                 }.bind(this));
                 break;
             }
         }
         if (flag) {
             this.setState({content: null}, function () {
+                this.alert('访问的网址不存在');
                 animate.allRun();
-            });
+            }.bind(this));
         }
     },
     render: function () {

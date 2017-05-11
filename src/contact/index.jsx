@@ -1,11 +1,13 @@
 var React = require('react');
 var map = require('../../dist/js/baidu_map.js');
+var animate = require('../toolers/animate');
 var Index = React.createClass({
     getDefaultProps: function () {
         return {};
     },
     componentDidMount: function () {
         map.loadJScript();
+        animate.allRun();
         // google_map_api.init();
     },
     render: function () {

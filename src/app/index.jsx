@@ -3,6 +3,7 @@ var FlexSlider = require('../common/flexslider.jsx');
 var Product = require('../common/product.jsx');
 var Persons = require('./persons.jsx');
 var Counter = require('./counter.jsx');
+var animate = require('../toolers/animate');
 var Index = React.createClass({
     getDefaultProps: function () {
         return {
@@ -72,6 +73,9 @@ var Index = React.createClass({
                 }
             ]
         };
+    },
+    componentDidMount: function () {
+        animate.allRun();
     },
     render: function () {
         return (

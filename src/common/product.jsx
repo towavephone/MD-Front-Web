@@ -21,13 +21,13 @@ var Product = React.createClass({
                                                 <div className="product-grid" style={{backgroundImage: 'url(' + data.img + ')'}}>
                                                     <div className="inner">
                                                         <p>
-                                                            <a href="#product/single" className="icon"><i className="icon-shopping-cart"></i></a>
-                                                            <a href="#product/single" className="icon"><i className="icon-eye"></i></a>
+                                                            <a href="#" className="icon"><i className="icon-shopping-cart"></i></a>
+                                                            <a href={'#product/single?id=' + data.id} className="icon"><i className="icon-eye"></i></a>
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div className="desc">
-                                                    <h3><a href="#product/single">{data.name}</a></h3>
+                                                    <h3><a href={'#product/single?id=' + data.id}>{data.name}</a></h3>
                                                     <span className="price">{data.spec}</span>
                                                 </div>
                                             </div>
