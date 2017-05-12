@@ -64,7 +64,7 @@ var Header = React.createClass({
                             <img src="dist/images/美登图标.png" style={{width: '60px'}}/>
                         </div>
                         <div className="col-md-3 col-xs-6">
-                            <div id="fh5co-logo"><a href="index.html#app/index">广东美登纸业有限公司</a></div>
+                            <div id="fh5co-logo"><a href="index.html#app/index">广东美登纸业</a></div>
                         </div>
                         <div className="col-md-5 col-xs-3 text-center menu-1">
                             <HeadNav tabs_url={this.props.tabs_url} active_tab_url={location.hash}/>

@@ -4,7 +4,12 @@ var Product = require('../common/product.jsx');
 var Persons = require('./persons.jsx');
 var Counter = require('./counter.jsx');
 var animate = require('../toolers/animate');
+var xhr = require('../toolers/xhr');
+var helpers = require('../toolers/helpers');
 var Index = React.createClass({
+    getInitialState: function () {
+        return {products: []};
+    },
     getDefaultProps: function () {
         return {
             images: [
@@ -12,23 +17,6 @@ var Index = React.createClass({
                 'dist/images/首页2.png',
                 'dist/images/首页3.png',
                 'dist/images/首页4.png'
-            ],
-            products: [
-                {
-                    img: 'dist/images/MD-B1.jpg',
-                    name: '扩散速渗型（卫生巾芯体）',
-                    spec: 'MD-B1'
-                },
-                {
-                    img: 'dist/images/MD-B2.jpg',
-                    name: '速渗型（尿片芯体）',
-                    spec: 'MD-B2'
-                },
-                {
-                    img: 'dist/images/MD-B3.jpg',
-                    name: '扩散干爽型（尿库芯体）',
-                    spec: 'MD-B3'
-                }
             ],
             persons: [
                 {
@@ -75,13 +63,25 @@ var Index = React.createClass({
         };
     },
     componentDidMount: function () {
-        animate.allRun();
+        this.getData();
+    },
+    getData: async function () {
+        var ret = await xhr.get('/product', {is_home: 1});
+        // let results = await Promise.all([xhr.get('/msg', null),xhr.get('/msg', null)]);
+        console.log(ret);
+        if (ret.result === false) {
+            helpers.alert(ret.error_msg);
+            return;
+        }
+        this.setState({products: ret.data}, function () {
+            animate.allRun();
+        });
     },
     render: function () {
         return (
             <div>
                 <FlexSlider datas={this.props.images}/>
-                <Product datas={this.props.products}/>
+                <Product datas={this.state.products}/>
                 <Persons datas={this.props.persons}/>
                 <Counter datas={this.props.counters}/>
             </div>

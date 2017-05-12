@@ -131,9 +131,8 @@ function getField (data, key) {
     return typeof data[key] === 'undefined' || data[key] === null ? 'NA' : data[key];
 }
 
-function getParams (state, include_fields, ignore_fields) {
+function getParams (state, ignore_fields) {
     var data = {};
-    var includeFields = include_fields ? include_fields : [];
     var ignoreFields = ignore_fields ? ignore_fields : [];
     for (var key in state) {
         var str = state[key];
@@ -142,9 +141,6 @@ function getParams (state, include_fields, ignore_fields) {
         }
         if (Object.prototype.toString.call(str) === '[object String]') {
             str = str.trim();
-            if (str === '' && includeFields.indexOf(key) === -1) {
-                continue;
-            }
         }
         data[key] = str;
     }
@@ -173,35 +169,45 @@ var validator = {
     // 所有可以的验证规则处理类存放的地方，后面会单独定义
     types: {},
     // 验证类型所对应的错误消息
-    messages: [],
+    messages: {},
     // 当然需要使用的验证类型
     config: {},
     // 暴露的公开验证方法
     // 传入的参数是 key => value对
     validate: function (data) {
         // 清空所有的错误信息
-        this.messages = [];
+        this.messages = {};
         for (var i in data) {
             if (data.hasOwnProperty(i)) {
                 if (!this.config[i]) {
                     continue; // 如果验证不存在，则不处理
                 }
-                var type = this.config[i].type; // 根据key查询是否有存在的验证规则
-                var name = this.config[i].name ? this.config[i].name : i;
-                var checker = this.types[type]; // 获取验证规则的验证类
-                if (!type) {
-                    continue; // 如果验证规则不存在，则不处理
-                }
-                if (!checker) { // 如果验证规则类不存在，抛出异常
-                    throw {
-                        name: 'ValidationError',
-                        message: 'No handler to validate type ' + type
-                    };
-                }
-                var result_ok = checker.validate(data[i]); // 使用查到到的单个验证类进行验证
-                if (!result_ok) {
-                    var msg = name + checker.instructions;
-                    this.messages.push(msg);
+                var types = this.config[i].types; // 根据key查询是否有存在的验证规则
+                for (var j in types) {
+                    var type = types[j];
+                    var name = this.config[i].name ? this.config[i].name : i;
+                    var checker = this.types[type]; // 获取验证规则的验证类
+                    var params = this.config[i].params ? this.config[i].params[type] : null;
+                    if (!type) {
+                        continue; // 如果验证规则不存在，则不处理
+                    }
+                    if (!checker) { // 如果验证规则类不存在，抛出异常
+                        throw {
+                            name: 'ValidationError',
+                            message: 'No handler to validate type ' + type
+                        };
+                    }
+                    var result_ok = checker.validate(data[i], params); // 使用查到的单个验证类进行验证
+                    if (!result_ok) {
+                        // debugger
+                        var instructions = Object.prototype.toString.call(checker.instructions) === '[object String]' ? checker.instructions : checker.instructions(data[i], params);
+                        var msg = name + instructions;
+                        if (typeof this.messages[i] == 'undefined') {
+                            this.messages[i] = [msg];
+                        } else {
+                            this.messages[i].push(msg);
+                        }
+                    }
                 }
             }
         }
@@ -209,7 +215,7 @@ var validator = {
     },
     // helper
     hasErrors: function () {
-        return this.messages.length !== 0;
+        return Object.keys(this.messages).length !== 0;
     }
 };
 
@@ -235,6 +241,35 @@ validator.types.isPositiveInteger = {
         return exp.test(value);
     },
     instructions: '必须为正整数'
+};
+
+validator.types.isRightLength = {
+    validate: function (value, params) {
+        if (params.max && !params.min) {
+            return value.length <= params.max;
+        }
+        if (!params.max && params.min) {
+            return value.length >= params.min;
+        }
+        return value.length >= params.min && value.length <= params.max;
+    },
+    instructions: function (value, params) {
+        if (params.max && !params.min) {
+            return '长度需小于等于' + params.max;
+        }
+        if (!params.max && params.min) {
+            return '长度需大于等于' + params.min;
+        }
+        return '长度需在' + params.min + '~' + params.max + '之间';
+    }
+};
+
+validator.types.isEmail = {
+    validate: function (value) {
+        var exp = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        return exp.test(value);
+    },
+    instructions: '格式不正确'
 };
 
 module.exports = {

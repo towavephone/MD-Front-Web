@@ -1,14 +1,93 @@
 var React = require('react');
 var map = require('../../dist/js/baidu_map.js');
 var animate = require('../toolers/animate');
+var helpers = require('../toolers/helpers');
+var validator = helpers.validator;
+var xhr = require('../toolers/xhr');
+var Input = React.createClass({
+    render: function () {
+        if (this.props.error === null) {
+            return <div className="form-group">
+                {this.props.children}
+            </div>;
+        }
+        if (this.props.error === undefined || this.props.error.length === 0) {
+            return <div className="form-group has-success has-feedback">
+                {this.props.children}
+                <span className="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>;
+        }
+        return <div className="form-group has-error has-feedback">
+            {this.props.children}
+            <span className="glyphicon glyphicon-remove form-control-feedback"></span>
+            {
+                this.props.error.map(function (data, index) {
+                    return <span key={index} id="helpBlock" className="help-block">{data}</span>;
+                })
+            }
+        </div>;
+    }
+});
 var Index = React.createClass({
+    getInitialState: function () {
+        return {
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+            errors: {name: null, email: null, subject: null, message: null}
+        };
+    },
     getDefaultProps: function () {
         return {};
     },
     componentDidMount: function () {
         map.loadJScript();
         animate.allRun();
+        validator.config = {
+            name: {
+                types: ['isRightLength'],
+                params: {isRightLength: {min: 2, max: 20}},
+                name: '姓名'
+            },
+            email: {
+                types: ['isRightLength', 'isEmail'],
+                params: {isRightLength: {min: 5, max: 20}},
+                name: '邮箱'
+            },
+            subject: {
+                types: ['isRightLength'],
+                params: {isRightLength: {min: 1, max: 30}},
+                name: '主题'
+            },
+            message: {
+                types: ['isNonEmpty'],
+                name: '留言'
+            }
+        };
         // google_map_api.init();
+    },
+    setValue: function (e) {
+        var data = helpers.setValue(e);
+        var id = e.target.id;
+        this.state[id] = e.target.value;
+        var params = helpers.getParams(this.state);
+        console.log(params);
+        validator.validate(params);
+        this.state.errors[id] = validator.messages[id];
+        data.errors = this.state.errors;
+        this.setState(data);
+    },
+    submit: function () {
+        var params = helpers.getParams(this.state);
+        console.log(params);
+        validator.validate(params);
+        this.setState({errors: validator.messages});
+        console.log(validator.messages);
+        if (validator.hasErrors()) {
+            return;
+        }
+        helpers.alert('提交成功');
     },
     render: function () {
         return (
@@ -44,38 +123,25 @@ var Index = React.createClass({
                             </div>
                             <div className="col-md-6 animate-box">
                                 <h3>留言</h3>
-                                <form action="#">
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <label htmlFor="name">姓名</label>
-                                            <input type="text" id="name" className="form-control" placeholder="请输入你的姓名"/>
-                                        </div>
-                                    </div>
-
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <label htmlFor="email">邮箱</label>
-                                            <input type="text" id="email" className="form-control" placeholder="请输入你的邮箱"/>
-                                        </div>
-                                    </div>
-
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <label htmlFor="subject">主题</label>
-                                            <input type="text" id="subject" className="form-control" placeholder="请输入留言的主题"/>
-                                        </div>
-                                    </div>
-
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <label htmlFor="message">留言</label>
-                                            <textarea name="message" id="message" cols="30" rows="10" className="form-control" placeholder="对我们说些悄悄话吧"></textarea>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <button className="btn btn-primary col-md-4">发送</button>
-                                    </div>
-                                </form>
+                                <Input error={this.state.errors.name}>
+                                    <label htmlFor="name" className="control-label">姓名</label>
+                                    <input className="form-control input-lg" type="text" id="name" value={this.state.name} placeholder="请输入你的姓名" onChange={this.setValue}/>
+                                </Input>
+                                <Input error={this.state.errors.email}>
+                                    <label htmlFor="email" className="control-label">邮箱</label>
+                                    <input type="text" className="form-control input-lg" id="email" value={this.state.email} placeholder="请输入你的邮箱" onChange={this.setValue}/>
+                                </Input>
+                                <Input error={this.state.errors.subject}>
+                                    <label htmlFor="subject" className="control-label">主题</label>
+                                    <input type="text" className="form-control input-lg" id="subject" value={this.state.subject} placeholder="请输入留言的主题" onChange={this.setValue}/>
+                                </Input>
+                                <Input error={this.state.errors.message}>
+                                    <label htmlFor="message" className="control-label">留言</label>
+                                    <textarea name="message" id="message" maxLength={500} value={this.state.message} cols="30" rows="10" className="form-control" placeholder="对我们说些悄悄话吧" onChange={this.setValue}></textarea>
+                                </Input>
+                                <div className="form-group">
+                                    <button className="btn btn-primary col-md-4" onClick={this.submit} data-toggle="tooltip" data-placement="left" title="Tooltip on left">发送</button>
+                                </div>
                             </div>
                         </div>
                     </div>

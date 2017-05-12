@@ -5,35 +5,13 @@ var animate = require('../toolers/animate');
 var xhr = require('../toolers/xhr');
 var helpers = require('../toolers/helpers');
 var Index = React.createClass({
-    getDefaultProps: function () {
+    getInitialState: function () {
         return {
-            name: '新款投影仪',
-            imgs: [
-                'dist/images/product-single-1.jpg',
-                'dist/images/product-single-2.jpg',
-                'dist/images/product-single-3.jpg',
-                'dist/images/product-single-4.jpg'
-            ],
-            detail: {
-                shortname: '投影仪',
-                content: ['2016新款商务办公家用投影机上市，现806有基础版和安卓版，安卓版支持1080P高清播放，内置安卓WIFI无线上网，可直接手机同屏，可下软件游戏，可连鼠标键盘，真正高清高亮满足您的需求。', '特别说明：806基础版没有WIFI，连接手机同屏等安卓版这么丰富的功能，仅只有投影功能。']
-            },
-            spec: [
-                ['产地: 中国大陆', '平台类型: 无', '投放画面大小: 30寸~300寸'],
-                ['机体尺寸（cm）: 33×25.7×10.5', '灯泡寿命: 30000小时', '分辨率(dpi): 1280x800dpi', '屏幕比例: 4:3 16:9', '非常棒']
-            ],
-            feedback: [
-                {
-                    comment: '清晰度不错，白天也能看的比较清楚，晚上更清晰一些。感觉性价比还是比较高的。',
-                    name: '张三',
-                    rating: 4
-                },
-                {
-                    comment: '投影机效果杠杠的，比电视好多了，大屏幕效果就是好 ，真是太棒了，超喜欢的， 买完了发了朋友圈，身边朋友都要买了，玩游戏超爽了。操作也简单，可以多来源的播放，电视，网络，移动盘。清晰度够用，音效也不错。不伤眼，很好。总之还是值得拥有！不多说了，直接看效果图，真的很赞！',
-                    name: '李四',
-                    rating: 2
-                }
-            ]
+            name: '',
+            imgs: [],
+            detail: null,
+            spec: [],
+            feedback: []
         };
     },
     componentDidMount: function () {
@@ -47,7 +25,19 @@ var Index = React.createClass({
             helpers.alert(ret.error_msg);
             return;
         }
-        this.setState(ret.data, function () {
+        if (ret.data.length !== 1) {
+            console.log('data', ret.data);
+            helpers.alert('数据不存在，请联系管理员');
+            return;
+        }
+        var data = ret.data[0];
+        var {name, imgs, detail, spec, feedback} = data;
+        name = name ? name : '';
+        imgs = imgs ? JSON.parse(imgs) : [];
+        detail = detail ? JSON.parse(detail) : null;
+        spec = spec ? JSON.parse(spec) : [];
+        feedback = feedback ? JSON.parse(feedback) : [];
+        this.setState({name, imgs, detail, spec, feedback}, function () {
             animate.allRun();
         });
     },
@@ -75,7 +65,7 @@ var Index = React.createClass({
                             <div className="col-md-10 col-md-offset-1 animate-box">
                                 <div className="owl-carousel owl-carousel-fullwidth product-carousel">
                                     {
-                                        this.props.imgs.map(function (data, index) {
+                                        Array.isArray(this.state.imgs) ? this.state.imgs.map(function (data, index) {
                                             return <div className="item" key={index}>
                                                 <div className="active text-center">
                                                     <figure>
@@ -83,12 +73,12 @@ var Index = React.createClass({
                                                     </figure>
                                                 </div>
                                             </div>;
-                                        })
+                                        }) : <div/>
                                     }
                                 </div>
                                 <div className="row animate-box">
                                     <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                                        <h2>{this.props.name}</h2>
+                                        <h2>{this.state.name}</h2>
                                         <p>
                                             <a href="#" className="btn btn-primary btn-outline btn-lg">加入购物车</a>
                                             <a href="#" className="btn btn-primary btn-outline btn-lg">比较</a>
@@ -109,11 +99,11 @@ var Index = React.createClass({
                                         <div className="fh5co-tab-content tab-content active" data-tab-content="1">
                                             <div className="col-md-10 col-md-offset-1">
                                                 <span className="price">SRP: $350</span>
-                                                <h2>{this.props.detail.shortname}</h2>
+                                                <h2>{this.state.detail && this.state.detail.shortname ? this.state.detail.shortname : ''}</h2>
                                                 {
-                                                    this.props.detail.content.map(function (data, index) {
+                                                    this.state.detail && Array.isArray(this.state.detail.content) ? this.state.detail.content.map(function (data, index) {
                                                         return <p key={index}>{data}</p>;
-                                                    })
+                                                    }) : <div/>
                                                 }
                                                 <div className="row">
                                                     <div className="col-md-6">
@@ -132,12 +122,12 @@ var Index = React.createClass({
                                             <div className="col-md-10 col-md-offset-1">
                                                 <h3>产品详情</h3>
                                                 {
-                                                    this.props.spec.map(function (data, index) {
+                                                    Array.isArray(this.state.spec) ? this.state.spec.map(function (data, index) {
                                                         var li = data.map(function (data2, index2) {
                                                             return <li key={index2}>{data2}</li>;
                                                         });
                                                         return <ul key={index}>{li}</ul>;
-                                                    })
+                                                    }) : <div/>
                                                 }
                                             </div>
                                         </div>
@@ -146,7 +136,7 @@ var Index = React.createClass({
                                                 <h3>客户评价</h3>
                                                 <div className="feed">
                                                     {
-                                                        this.props.feedback.map(function (data, index) {
+                                                        Array.isArray(this.state.spec) ? this.state.feedback.map(function (data, index) {
                                                             var rating = parseInt(data.rating);
                                                             rating = isNaN(rating) ? 0 : rating;
                                                             var stars = [];
@@ -162,7 +152,7 @@ var Index = React.createClass({
                                                                     {stars}
                                                                 </span>
                                                             </div>;
-                                                        })
+                                                        }) : <div/>
                                                     }
                                                 </div>
                                             </div>
