@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 .fh5co-nav #fh5co-logo {
-  font-size: 20px;
+  font-size: 25px;
   margin: 0;
   padding: 0;
   text-transform: uppercase;
@@ -589,6 +589,14 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-contact-info ul li.url:before {
   font-size: 23px;
   content: "\e9af";
+}
+.fh5co-contact-info ul li.fax:before {
+  font-size: 23px;
+  content: "\e9c4";
+}
+.fh5co-contact-info ul li.qq:before {
+  font-size: 23px;
+  content: "\e957";
 }
 
 #fh5co-header .display-tc,

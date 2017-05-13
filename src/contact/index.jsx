@@ -65,7 +65,6 @@ var Index = React.createClass({
                 name: '留言'
             }
         };
-        // google_map_api.init();
     },
     setValue: function (e) {
         var data = helpers.setValue(e);
@@ -79,7 +78,7 @@ var Index = React.createClass({
         this.setState(data);
     },
     submit: function () {
-        var params = helpers.getParams(this.state);
+        var params = helpers.getParams(this.state, ['errors', 'isDisabled']);
         console.log(params);
         validator.validate(params);
         this.setState({errors: validator.messages});
@@ -87,7 +86,17 @@ var Index = React.createClass({
         if (validator.hasErrors()) {
             return;
         }
-        helpers.alert('提交成功');
+        this.postData(params);
+    },
+    postData: async function (params) {
+        var ret = await xhr.post('/msg/add', params);
+        // let results = await Promise.all([xhr.get('/msg', null),xhr.get('/msg', null)]);
+        console.log(ret);
+        if (ret.result === false) {
+            helpers.alert(ret.error_msg);
+            return;
+        }
+        helpers.alert('插入成功');
     },
     render: function () {
         return (
@@ -114,10 +123,12 @@ var Index = React.createClass({
                                 <div className="fh5co-contact-info">
                                     <h3>关于我们</h3>
                                     <ul>
-                                        <li className="address">广东省佛山市三水区乐平镇<br/>三水工业园区C区9号</li>
-                                        <li className="phone"><a href="tel://18038762080">+ 18038762080</a></li>
-                                        <li className="email"><a href="mailto:info@yoursite.com">634407147@qq.com</a></li>
-                                        <li className="url"><a href="http://www.fsmeideng.com">fsmeideng.com</a></li>
+                                        <li className="address"><a href="javascript:void(0)">地址：中国广东佛山市三水区<br/>乐平工业区齐力大道南9号</a></li>
+                                        <li className="phone"><a href="tel://0757-87388816">电话：0757-87388816</a></li>
+                                        <li className="qq"><a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=651207923&website=www.oicqzone.com">QQ：651207923</a></li>
+                                        <li className="email"><a href="javascript:void(0)">邮箱：ty27149@163.com</a></li>
+                                        <li className="fax"><a href="javascript:void(0)">传真：0757-87388816</a></li>
+                                        <li className="url"><a href="http://www.fsmeideng.com">网站：fsmeideng.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -140,7 +151,7 @@ var Index = React.createClass({
                                     <textarea name="message" id="message" maxLength={500} value={this.state.message} cols="30" rows="10" className="form-control" placeholder="对我们说些悄悄话吧" onChange={this.setValue}></textarea>
                                 </Input>
                                 <div className="form-group">
-                                    <button className="btn btn-primary col-md-4" onClick={this.submit} data-toggle="tooltip" data-placement="left" title="Tooltip on left">发送</button>
+                                    <button className="btn btn-primary col-md-4" onClick={this.submit}>发送</button>
                                 </div>
                             </div>
                         </div>

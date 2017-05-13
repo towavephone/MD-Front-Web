@@ -61,7 +61,7 @@ var Header = React.createClass({
                 <div className="container">
                     <div className="row">
                         <div className="col-md-1 col-xs-1 hidden-xs">
-                            <img src="dist/images/美登图标.png" style={{width: '60px'}}/>
+                            <a href="index.html#app/index"><img src="dist/images/美登图标.png" style={{width: '70px'}}/></a>
                         </div>
                         <div className="col-md-3 col-xs-6">
                             <div id="fh5co-logo"><a href="index.html#app/index">广东美登纸业</a></div>

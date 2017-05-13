@@ -215,7 +215,10 @@ var validator = {
     },
     // helper
     hasErrors: function () {
-        return Object.keys(this.messages).length !== 0;
+        return this.getErrorsLength() !== 0;
+    },
+    getErrorsLength: function () {
+        return Object.keys(this.messages).length;
     }
 };
 
