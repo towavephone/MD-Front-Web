@@ -53,7 +53,7 @@ module.exports = {
         new webpack.ProvidePlugin({React: 'react'}),
         new HtmlWebpackPlugin({
             filename: '../index.html',
-            template: 'src/index.html'
+            template: 'src/index.prod.html'
         }),
         // 打包的时候删除重复或者相似的文件
         new webpack.optimize.DedupePlugin(),
