@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>广东美登官网</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="广东美登官网" />
+	<meta name="keywords" content="广东美登,美登,meideng,gdmd,美登纸业" />
+	<meta name="author" content="towave" />
+
+	<link rel="shortcut icon" href="dist/images/美登图标.png" />
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet"> 
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="dist/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="dist/css/icomoon.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="dist/css/flexslider.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="dist/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="dist/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="dist/css/bootstrap.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="dist/css/style.css">
+	<!-- Modernizr JS -->
+	<script src="dist/js/modernizr-2.6.2.min.js"></script>
+	</head>
+	<body>
+		<section id="page"></section>
+		<script src="dist/js/element.js"></script>
+		<!-- jQuery -->
+		<script src="dist/js/jquery.min.js"></script>
+		<script src="dist/js/bootstrap.js"></script>
+		<!-- jQuery Easing -->
+		<script src="dist/js/jquery.easing.1.3.js"></script>
+		<!-- Waypoints -->
+		<script src="dist/js/jquery.waypoints.min.js"></script>
+		<!-- Carousel -->
+		<script src="dist/js/owl.carousel.min.js"></script>
+		<!-- countTo -->
+		<script src="dist/js/jquery.countTo.js"></script>
+		<!-- Flexslider -->
+		<script src="dist/js/jquery.flexslider-min.js"></script>
+		<script src="dist/js/config.prod.js"></script>
+		<script type="text/javascript">
+			function googleTranslateElementInit(){
+				new google.translate.TranslateElement({pageLanguage: 'zh-CN', multilanguagePage: true, gaTrack: true, gaId: 'UA-98114394-1'}, 'google_translate_element');
+			};
+			function init() {
+				var map = new BMap.Map("map");            // 创建Map实例
+				// 23.2543310000,113.0110250000
+				var point = new BMap.Point(113.0110250000,23.2543310000); // 创建点坐标
+				map.centerAndZoom(point,10);                 
+				// map.enableScrollWheelZoom();                 //启用滚轮放大缩小
+				var mapType1 = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]});
+				var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+				var overView = new BMap.OverviewMapControl();
+				var overViewOpen = new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT});
+				map.addControl(mapType1);          //2D图，卫星图
+				map.addControl(mapType2);          //左上角，默认地图控件
+				map.setCurrentCity("三水");        //由于有3D图，需要设置城市哦
+				map.addControl(overView);          //添加默认缩略地图控件
+				map.addControl(overViewOpen);      //右下角，打开
+				var myIcon = new BMap.Icon("dist/images/loc.png", new BMap.Size(144,80));
+				var marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
+				map.addOverlay(marker);               // 将标注添加到地图中
+				marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+				// 添加带有定位的导航控件
+				var navigationControl = new BMap.NavigationControl({
+					// 靠左上角位置
+					anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+					// LARGE类型
+					type: BMAP_NAVIGATION_CONTROL_LARGE,
+					// 启用显示定位
+					// enableGeolocation: true
+				});
+				map.addControl(navigationControl);
+			}  
+		</script>
+	</body>
+</html>
+
