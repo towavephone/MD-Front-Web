@@ -7,7 +7,7 @@ var Header = React.createClass({
             tabs_url: [
                 {
                     url: '#about/index',
-                    name: '公司介绍',
+                    name: '关于我们',
                     dropdown: [
                         {
                             url: '#about/index',

@@ -84,6 +84,7 @@ var Index = React.createClass({
         this.setState({errors: validator.messages});
         console.log(validator.messages);
         if (validator.hasErrors()) {
+            helpers.alert('请按要求填写相关内容');
             return;
         }
         this.postData(params);
@@ -124,7 +125,7 @@ var Index = React.createClass({
                                     <h3>关于我们</h3>
                                     <ul>
                                         <li className="address"><a href="javascript:void(0)">地址：中国广东佛山市三水区<br/>乐平工业区齐力大道南9号</a></li>
-                                        <li className="phone"><a href="tel://0757-87388816">电话：0757-87388816</a></li>
+                                        <li className="phone"><a href="tel:0757-87388816">电话：0757-87388816</a></li>
                                         <li className="qq"><a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=651207923&website=www.oicqzone.com">QQ：651207923</a></li>
                                         <li className="email"><a href="javascript:void(0)">邮箱：ty27149@163.com</a></li>
                                         <li className="fax"><a href="javascript:void(0)">传真：0757-87388816</a></li>
